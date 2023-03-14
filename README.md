@@ -13,18 +13,18 @@ After reviewing the cleaned dataset, we decided to build a **linear regression**
 &nbsp; 
 
 
-## PART II: Baseline Model:
-### Features and Model
+## PART II: Baseline Model
+### Baseline Features and Model
 Our baseline model is a linear regression model with two features – `total fat (PDV)` and `sugar (PDV)`, both of which are quantitative continuous variables. We’ve chosen these two features because they are positively associated with calories in common sense. Our baseline model used a pipeline in which the FunctionTransformer converted the two features to percentages in two decimal places before passing them to a linear regression model. To ensure the model’s generalized performance on unseen data, we’ve divided the dataset into **training** and **testing** sets and fitted the model only on train data.  
 
-### Performance
+### Baseline Performance
 The baseline model’s **RMSE** on the training and testing sets are **135.93** and **137.69** (rounded to two decimal places). The RMSEs are close, which means the model does a good job on generalizing to unseen data. The model got a reasonably high **score (R-Squared)** of **0.78** (rounded to two decimal places) on both training and testing sets, which is pretty *good*. However, there are other reasonable features we can add to improve the model’s performance.
 
 &nbsp; 
 
-## PART III: Final Model:
+## PART III: Final Model
 
-### Features and Model
+### Final Features and Model
 To improve the baseline model, we included four new features – `n_ingredients`, `sf_cut`, `cbhd_cut` and `year_since_2007`– in the input data frame and compared the performances of different combinations of features to determine the final model. To ensure the model’s generalized performance on unseen data, we’ve divided the dataset into **training** and **testing** sets and fitted the model only on train data.  
 
 To be specific, we firstly included the `n_ingredients` columns as it is from the cleaned dataset. This feature is included because intuitively a recipe with more ingredients would probably have higher calories. The second groups of features added are `sf_cut` and `cbhd_cut`, which are created by discretizing the `saturated fat (PDV)` and `carbohydrates (PDV)` into 4 equal-sized buckets respectively based on quartile. These two features are qualitative ordinal variables and are added to the linear regression model after encoded by OneHotEncoder. The last added feature is  `year_since_2007`, which is created by subtracting 2007 from the year in which the recipes are submitted. This feature is included because we assume that more high-calorie recipes are being developed as time goes on. The year 2007 was chosen because the earliest recipe in our dataset was submitted in 2008.  We then used a **5-fold cross validation** on the training set to determine the best hyperparameter of polynomial features to use on this variable, which is degree 1. 
@@ -32,7 +32,7 @@ To be specific, we firstly included the `n_ingredients` columns as it is from th
 ### Hyperparameters
 After conducting a **5-fold cross validation** on different combinations of features including the one in the baseline model and comparing RMSEs, the best set of features are `total fat (PDV)`and `sugar (PDV)`transformed into percentages, along with `sf_cut`, `cbhd_cut`and `n_ingredients`. We used these features to construct our final linear regression model. 
 
-### Performance
+### Final Performance
 The final model’s **RMSE** on the training and testing sets are **108.60** and **109.27** (rounded to two decimal places). The RMSEs are close, which means the final model does a good job on generalizing to unseen data. 
 The final model got a pretty high **score (R-Squared)** of **0.86** (rounded to two decimal places) on both training and testing sets. The lower RMSE and higher score of the final model together show an *improvement* on the predicting accuracy compared to the baseline model.
 
@@ -51,4 +51,3 @@ The evaluation metric we choose is **RMSE**, and the null and alternative hypoth
 The test statistic we use is the difference between **RMSE** (*Simple* - *Complicated*). This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
 
 <iframe src="assets/permutation_result.html" width=600 height=410 frameBorder=0></iframe>
-

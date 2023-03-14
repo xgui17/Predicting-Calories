@@ -48,6 +48,6 @@ The evaluation metric we choose is **RMSE**, and the null and alternative hypoth
 - Null hypothesis (H0)：Our model is fair. Its **RMSE** for *Simple* and *Complicated* recipes are roughly the same, and any differences are due to random chance.
 - Alternative Hypothesis (Ha): Our model is unfair. Its **RMSE** for *Simple* recipes are lower than the one for *Complicated* recipes.
 
-The test statistic we use is the difference between **RMSE**. This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
+The test statistic we use is the difference between **RMSE** (*Simple* - *Complicated*). This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
 
-<iframe src="assets/permutation_result.html" width=570 height=400 frameBorder=0></iframe>
+<iframe src="assets/permutation_result.html" width=600 height=400 frameBorder=0></iframe>

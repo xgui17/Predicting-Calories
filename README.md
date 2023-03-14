@@ -1,4 +1,4 @@
-# Eat healthier--Predicting Calories for Recipes on [Food.com](https://www.food.com/) 🥗
+# Eat healthier: Predicting Calories for Recipes on [Food.com](https://www.food.com/) 🥗
 
 &nbsp; 
 

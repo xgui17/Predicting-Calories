@@ -18,7 +18,7 @@ After reviewing the cleaned dataset, we decided to build a **linear regression**
 Our baseline model is a linear regression model with two features – `total fat (PDV)` and `sugar (PDV)`, both of which are quantitative continuous variables. We’ve chosen these two features because they are positively associated with calories in common sense. Our baseline model used a pipeline in which the FunctionTransformer converted the two features to percentages in two decimal places before passing them to a linear regression model. To ensure the model’s generalized performance on unseen data, we’ve divided the dataset into **training** and **testing** sets and fitted the model only on train data.  
 
 ### Baseline Performance
-The baseline model’s **RMSE** on the training and testing sets are **135.93** and **137.69** (rounded to two decimal places). The RMSEs are close, which means the model does a good job on generalizing to unseen data. The model got a reasonably high **score (R-Squared)** of **0.78** (rounded to two decimal places) on both training and testing sets, which is pretty *good*. However, there are other reasonable features we can add to improve the model’s performance.
+The baseline model’s **RMSE** on the training and testing sets are **135.02** and **138.35** (rounded to two decimal places). The RMSEs are relatively close, which means the model does a good job on generalizing to unseen data. The model got a reasonably high **score (R-Squared)** of **0.78** (rounded to two decimal places) on both training and testing sets, which is pretty *good*. However, there are other reasonable features we can add to improve the model’s performance.
 
 &nbsp; 
 
@@ -33,7 +33,7 @@ To be specific, we firstly included the `n_ingredients` columns as it is from th
 After conducting a **5-fold cross validation** on different combinations of features including the one in the baseline model and comparing RMSEs, the best set of features are `total fat (PDV)`and `sugar (PDV)`transformed into percentages, along with `sf_cut`, `cbhd_cut`and `n_ingredients`. We used these features to construct our final linear regression model. 
 
 ### Final Performance
-The final model’s **RMSE** on the training and testing sets are **108.60** and **109.27** (rounded to two decimal places). The RMSEs are close, which means the final model does a good job on generalizing to unseen data. 
+The final model’s **RMSE** on the training and testing sets are **107.23** and **111.05** (rounded to two decimal places). The RMSEs are relatively close, which means the final model does a good job on generalizing to unseen data. 
 The final model got a pretty high **score (R-Squared)** of **0.86** (rounded to two decimal places) on both training and testing sets. The lower RMSE and higher score of the final model together show an *improvement* on the predicting accuracy compared to the baseline model.
 
 &nbsp; 
@@ -48,6 +48,6 @@ The evaluation metric we choose is **RMSE**, and the null and alternative hypoth
 - Null hypothesis (H0)：Our model is fair. Its **RMSE** for *Simple* and *Complicated* recipes are roughly the same, and any differences are due to random chance.
 - Alternative Hypothesis (Ha): Our model is unfair. Its **RMSE** for *Simple* recipes are lower than the one for *Complicated* recipes.
 
-The test statistic we use is the difference between **RMSE** (*Simple* - *Complicated*). This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
+The test statistic we use is the difference between **RMSE** (*Simple* - *Complicated*). The observed difference is -13.68. This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
 
 <iframe src="assets/permutation_result.html" width=600 height=410 frameBorder=0></iframe>

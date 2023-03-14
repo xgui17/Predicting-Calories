@@ -50,5 +50,4 @@ The evaluation metric we choose is **RMSE**, and the null and alternative hypoth
 
 The test statistic we use is the difference between **RMSE**. This is a one-sided test, and the p-value is much smaller than 0.05. Therefore, we have sufficient evidence to reject the null hypothesis at 0.05 significance level and conclude that our model to predict calories performs better on *Simple* recipes with less than 9 steps. 
 
-&nbsp; 
-
+<iframe src="assets/permutation_result.html" width=570 height=400 frameBorder=0></iframe>
